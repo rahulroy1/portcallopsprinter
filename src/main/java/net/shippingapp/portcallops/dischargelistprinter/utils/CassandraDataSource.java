@@ -52,7 +52,7 @@ public class CassandraDataSource {
         String keyStoreLoc = System.getProperty("app.keystore") ;
         File sslKeyStoreFilePath ;
         if (keyStoreLoc == null || keyStoreLoc.length() ==0) {
-            String defaultFilePath = env.getProperty("JAVA_HOME") + "jre/lib/security/cacerts";
+            String defaultFilePath = env.getProperty("JAVA_HOME") + "/jre/lib/security/cacerts";
             sslKeyStoreFilePath = 
             new File(defaultFilePath) ;
 
