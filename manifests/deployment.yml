@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: rahulroyportcallopsprinter 
 spec:
-   selector:
-     matchLabels:
-       app: rahulroyportcallopsprinter
-       version: v1
+  selector:
+    matchLabels:
+      app: rahulroyportcallopsprinter
+      version: v1
   replicas: 1
   template:
     metadata:
