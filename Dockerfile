@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-8-alpine AS MAVEN_BUILD
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
 
 # Add Maintainer Info
 LABEL maintainer="rahul.roy@in.ibm.com"
