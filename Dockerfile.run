@@ -1,0 +1,14 @@
+# Start with a base image containing Java runtime (mine java 8)
+FROM jdk-8-alpine
+# Add Maintainer Info
+LABEL maintainer="rahul.roy@in.ibm.com"
+
+# Make port 443 available to the world outside this container
+EXPOSE 443
+
+# The application's jar file (when packaged)
+ARG JAR_FILE=target/portcallopsprinter-0.0.1-SNAPSHOT.jar
+# Add the application's jar to the container
+ADD ${JAR_FILE} portcallopsprinter-0.0.1-SNAPSHOT.jar
+# Run the jar file 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/portcallopsprinter-0.0.1-SNAPSHOT.jar"]
