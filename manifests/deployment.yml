@@ -1,20 +1,20 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: rahulroyportcallopsprinter 
+  name: rahulroyportcallopsprinter
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: rahulroyportcallopsprinter
       version: v1
-  replicas: 1
   template:
     metadata:
       labels:
-        app: rahulroyportcallopsprinter 
+        app: rahulroyportcallopsprinter
     spec:
       containers:
-        - name: rahulroyportcallopsprinter 
+        - name: rahulroyportcallopsprinter
           image: royclouddemo.azurecr.io/rahulroyportcallopsprinter
           ports:
           - containerPort: 80
