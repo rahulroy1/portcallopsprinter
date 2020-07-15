@@ -10,7 +10,7 @@ WORKDIR /build/
 RUN mvn package
 
 # Start with a base image containing Java runtime (mine java 8)
-FROM jdk-8-alpine
+FROM openjdk:8-jdk-alpine
 
 WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/portcallopsprinter-0.0.1-SNAPSHOT /app/
