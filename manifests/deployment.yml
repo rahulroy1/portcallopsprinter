@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rahulroyportcallopsprinter-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: rahulroyportcallopsprinter
@@ -16,4 +16,4 @@ spec:
       - name: rahulroyportcallopsprinter
         image: royclouddemo.azurecr.io/rahulroyportcallopsprinter
         ports:
-        - containerPort: 80
+        - containerPort: 8080
