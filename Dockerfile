@@ -8,3 +8,15 @@ COPY pom.xml /build/
 COPY src /build/src/
 WORKDIR /build/
 RUN mvn package
+
+# Start with a base image containing Java runtime (mine java 8)
+FROM jdk-8-alpine
+
+WORKDIR /app
+COPY --from=MAVEN_BUILD /build/target/portcallopsprinter-0.0.1-SNAPSHOT /app/
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Run the jar file 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/portcallopsprinter-0.0.1-SNAPSHOT.jar"]
