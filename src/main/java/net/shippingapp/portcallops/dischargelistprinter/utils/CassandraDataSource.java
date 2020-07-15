@@ -15,7 +15,9 @@ import com.datastax.driver.core.JdkSSLOptions;
 import com.datastax.driver.core.RemoteEndpointAwareJdkSSLOptions;
 import com.datastax.driver.core.Session;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -40,6 +42,9 @@ public class CassandraDataSource {
 
     private static CassandraDataSource dataSource;
 
+    @Autowired
+    private Environment env;
+
     @PostConstruct
     public void initDataSource() throws Exception {
 
@@ -47,8 +52,9 @@ public class CassandraDataSource {
         String keyStoreLoc = System.getProperty("app.keystore") ;
         File sslKeyStoreFilePath ;
         if (keyStoreLoc == null || keyStoreLoc.length() ==0) {
+            String defaultFilePath = env.getProperty("JAVA_HOME") + "jre/lib/security/cacerts";
             sslKeyStoreFilePath = 
-            new File("/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/security/cacerts") ;
+            new File(defaultFilePath) ;
 
         } else {
             sslKeyStoreFilePath = 
