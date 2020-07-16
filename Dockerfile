@@ -7,15 +7,12 @@ LABEL maintainer="rahul.roy@in.ibm.com"
 COPY pom.xml /build/
 COPY src /build/src/
 WORKDIR /build/
-RUN mvn package
+RUN mvn clean package -DskipTests
 
 # Start with a base image containing Java runtime (mine java 8)
 FROM openjdk:8-jdk-alpine
-
 WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/dischargelistprinter-0.0.1-SNAPSHOT.jar /app/
 
-EXPOSE 8080
-
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/dischargelistprinter-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-Dserver.port=8082", "-Dapp.keystore=/usr/local/openjdk-8/jre/lib/security/cacerts","dischargelistprinter-0.0.1-SNAPSHOT.jar"]
