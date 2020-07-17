@@ -14,6 +14,6 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: portcallopsprinter
-        image: royclouddemo.azurecr.io/rahulroy1/portcallopsprinter
+        image: royclouddemo.azurecr.io/rahulroy1/portcallopsprinter:latest
         ports:
         - containerPort: 8080
